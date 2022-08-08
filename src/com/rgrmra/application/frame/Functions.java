@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.Objects;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -17,25 +18,25 @@ public class Functions extends JFrame {
 	protected Area[] button = new Area[101];
 	protected Settings settings = new Settings();
 
-	private ClassLoader classLoader = getClass().getClassLoader();
-	protected ImageIcon icon[] = new ImageIcon[11];
+	private final ClassLoader classLoader = getClass().getClassLoader();
+	protected ImageIcon[] icon = new ImageIcon[11];
 
-	private Toolkit kit = Toolkit.getDefaultToolkit();
+	private final Toolkit kit = Toolkit.getDefaultToolkit();
 	public Image img = kit.getImage(classLoader.getResource("com/rgrmra/application/images/icone.png"));
 
 	// CONSTRUTOR E DECLARAÇÃO DAS VARIÁVEIS
 	protected Functions() {
-		icon[0] = new ImageIcon(classLoader.getResource("com/rgrmra/application/images/space.png"));
-		icon[1] = new ImageIcon(classLoader.getResource("com/rgrmra/application/images/num1.png"));
-		icon[2] = new ImageIcon(classLoader.getResource("com/rgrmra/application/images/num2.png"));
-		icon[3] = new ImageIcon(classLoader.getResource("com/rgrmra/application/images/num3.png"));
-		icon[4] = new ImageIcon(classLoader.getResource("com/rgrmra/application/images/num4.png"));
-		icon[5] = new ImageIcon(classLoader.getResource("com/rgrmra/application/images/num5.png"));
-		icon[6] = new ImageIcon(classLoader.getResource("com/rgrmra/application/images/num6.png"));
-		icon[7] = new ImageIcon(classLoader.getResource("com/rgrmra/application/images/num7.png"));
-		icon[8] = new ImageIcon(classLoader.getResource("com/rgrmra/application/images/num8.png"));
-		icon[9] = new ImageIcon(classLoader.getResource("com/rgrmra/application/images/mina.png"));
-		icon[10] = new ImageIcon(classLoader.getResource("com/rgrmra/application/images/bandeira.png"));
+		icon[0] = new ImageIcon(Objects.requireNonNull(classLoader.getResource("com/rgrmra/application/images/space.png")));
+		icon[1] = new ImageIcon(Objects.requireNonNull(classLoader.getResource("com/rgrmra/application/images/num1.png")));
+		icon[2] = new ImageIcon(Objects.requireNonNull(classLoader.getResource("com/rgrmra/application/images/num2.png")));
+		icon[3] = new ImageIcon(Objects.requireNonNull(classLoader.getResource("com/rgrmra/application/images/num3.png")));
+		icon[4] = new ImageIcon(Objects.requireNonNull(classLoader.getResource("com/rgrmra/application/images/num4.png")));
+		icon[5] = new ImageIcon(Objects.requireNonNull(classLoader.getResource("com/rgrmra/application/images/num5.png")));
+		icon[6] = new ImageIcon(Objects.requireNonNull(classLoader.getResource("com/rgrmra/application/images/num6.png")));
+		icon[7] = new ImageIcon(Objects.requireNonNull(classLoader.getResource("com/rgrmra/application/images/num7.png")));
+		icon[8] = new ImageIcon(Objects.requireNonNull(classLoader.getResource("com/rgrmra/application/images/num8.png")));
+		icon[9] = new ImageIcon(Objects.requireNonNull(classLoader.getResource("com/rgrmra/application/images/mina.png")));
+		icon[10] = new ImageIcon(Objects.requireNonNull(classLoader.getResource("com/rgrmra/application/images/bandeira.png")));
 
 		for (int i = 0; i < 101; i++) {
 			button[i] = new Area();
@@ -60,13 +61,13 @@ public class Functions extends JFrame {
 	}
 
 	// DEFINE A POSIÇÃO DAS MINAS
-	protected void setMined(int i) {
+	protected void setMined() {
 		// INSTANCIA O OBJETO RANDOM PARA DISTRIBUIÇÃO DAS MINAS
 		Random random = new Random();
 
 		int chosenNumber = random.nextInt(100);
-		if (button[chosenNumber].isMined() == true) {
-			setMined(i);
+		if (button[chosenNumber].isMined()) {
+			setMined();
 		} else {
 			button[chosenNumber].setMined(true);
 		}
@@ -88,16 +89,16 @@ public class Functions extends JFrame {
 
 		// DEFINE QUAIS BOTÕES TERÃO MINAS
 		for (int sequence = 0; sequence < settings.getTotalMines(); sequence++) {
-			this.setMined(sequence);
+			this.setMined();
 		}
 	}
 
 	// CUSTOMIZA O NÚMERO DE BOMBAS
-	protected void customButton(String valor) {
+	protected void customButton() {
 		try {
 
 			// JANELA PARA OBTER QUANTIDADE DE BOMBAS
-			valor = JOptionPane.showInputDialog(this,
+			String valor = JOptionPane.showInputDialog(this,
 					"<html>Com quantas button deseja jogar?<br>Valido de 10 à 99</html>", "Custom",
 					JOptionPane.PLAIN_MESSAGE);
 
@@ -106,13 +107,13 @@ public class Functions extends JFrame {
 					// JANELA DE ERRO COM VALOR MENOR QUE 10
 					JOptionPane.showMessageDialog(this, "<html>Digite um valor maior que 10!</html>", "Erro",
 							JOptionPane.PLAIN_MESSAGE);
-					customButton(null);
+					customButton();
 
 				} else if (Integer.parseInt(valor) > 99) {
 					// JANELA DE ERRO COM VALOR MAIOR QUE 99
 					JOptionPane.showMessageDialog(this, "<html>Digite um valor menor que 99!</html>", "Erro",
 							JOptionPane.PLAIN_MESSAGE);
-					customButton(null);
+					customButton();
 				} else {
 					// DISTRIBUI AS BOMBAS COM O VALOR CUSTOMIZADO
 					distribuirbutton(Integer.parseInt(valor));
@@ -121,7 +122,7 @@ public class Functions extends JFrame {
 		} catch (NumberFormatException e) {
 			JOptionPane.showMessageDialog(this, "<html>Digite um valor Valido!</html>", "Erro",
 					JOptionPane.PLAIN_MESSAGE);
-			customButton(null);
+			customButton();
 		}
 	}
 
@@ -190,56 +191,56 @@ public class Functions extends JFrame {
 
 		// BOMBA SUPERIOR ESQUERDA
 		if (selectedButton - 11 >= 0 && selectedButton % 10 != 0) {
-			if (button[selectedButton - 11].isMined() == true) {
+			if (button[selectedButton - 11].isMined()) {
 				numerador += 1;
 			}
 		}
 
 		// BOMBA SUPERIOR
 		if (selectedButton - 10 >= 0) {
-			if (button[selectedButton - 10].isMined() == true) {
+			if (button[selectedButton - 10].isMined()) {
 				numerador += 1;
 			}
 		}
 
 		// BOMBA SUPERIOR DIREITA
 		if (selectedButton - 9 >= 0 && selectedButton % 10 != 9) {
-			if (button[selectedButton - 9].isMined() == true) {
+			if (button[selectedButton - 9].isMined()) {
 				numerador += 1;
 			}
 		}
 
 		// BOMBA ESQUERDA
 		if (selectedButton - 1 >= 0 && selectedButton % 10 != 0) {
-			if (button[selectedButton - 1].isMined() == true) {
+			if (button[selectedButton - 1].isMined()) {
 				numerador += 1;
 			}
 		}
 
 		// BOMBA DIREITA
 		if (selectedButton + 1 < 100 && selectedButton % 10 != 9) {
-			if (button[selectedButton + 1].isMined() == true) {
+			if (button[selectedButton + 1].isMined()) {
 				numerador += 1;
 			}
 		}
 
 		// BOMBA INFERIOR ESQUERDA
 		if (selectedButton + 9 < 100 && selectedButton % 10 != 0) {
-			if (button[selectedButton + 9].isMined() == true) {
+			if (button[selectedButton + 9].isMined()) {
 				numerador += 1;
 			}
 		}
 
 		// BOMBA INFERIOR
 		if (selectedButton + 10 < 100) {
-			if (button[selectedButton + 10].isMined() == true) {
+			if (button[selectedButton + 10].isMined()) {
 				numerador += 1;
 			}
 		}
 
 		// BOMBA INFERIOR DIREITA
 		if (selectedButton + 11 < 100 && selectedButton % 10 != 9) {
-			if (button[selectedButton + 11].isMined() == true) {
+			if (button[selectedButton + 11].isMined()) {
 				numerador += 1;
 			}
 		}

@@ -25,27 +25,17 @@ import javax.swing.JSeparator;
 public class Field extends JFrame implements WindowListener, ActionListener, MouseListener, KeyListener {
 	private static final long serialVersionUID = 1L;
 
-	private Functions function = new Functions();
+	private final Functions function = new Functions();
 
-	// ATRIBUTOS DO MENU
-	private JMenuBar menu = new JMenuBar();
-	private JMenu menuOption = new JMenu("Configurações");
-	private JMenuItem menuFacil = new JMenuItem("Fácil");
-	private JMenuItem menuMedio = new JMenuItem("Médio");
-	private JMenuItem menuDificil = new JMenuItem("Difícil");
-	private JMenuItem menuOneClick = new JMenuItem("OneClick");
-	private JMenuItem menuCustom = new JMenuItem("Custom");
-	private JMenuItem menuSair = new JMenuItem("Sair");
+	private final JMenuItem menuFacil = new JMenuItem("Fácil");
+	private final JMenuItem menuMedio = new JMenuItem("Médio");
+	private final JMenuItem menuDificil = new JMenuItem("Difícil");
+	private final JMenuItem menuOneClick = new JMenuItem("OneClick");
+	private final JMenuItem menuCustom = new JMenuItem("Custom");
+	private final JMenuItem menuSair = new JMenuItem("Sair");
 
 	// BOTÃO NOVO JOGO
-	private JButton newgame = new JButton("Novo Jogo");
-
-	// PAINEIS
-	private JPanel panel = new JPanel();
-	private JPanel panelNorth = new JPanel();
-	private JPanel panelWest = new JPanel();
-	private JPanel panelEast = new JPanel();
-	private JPanel panelSouth = new JPanel();
+	final JButton newgame = new JButton("Novo Jogo");
 
 	public Field() {
 		super("Campo Minado");
@@ -54,11 +44,22 @@ public class Field extends JFrame implements WindowListener, ActionListener, Mou
 		setLocationRelativeTo(null);
 		addKeyListener(this);
 
+		// ATRIBUTOS DO MENU
+		final JMenuBar menu = new JMenuBar();
+		final JMenu menuOption = new JMenu("Configurações");
+
+		// PAINEIS
+		final JPanel panel = new JPanel();
+		final JPanel panelNorth = new JPanel();
+		final JPanel panelWest = new JPanel();
+		final JPanel panelEast = new JPanel();
+		final JPanel panelSouth = new JPanel();
+
 		// ICONE DA JANELA
 		setIconImage(function.img);
 
 		for (int i = 0; i < 100; i++) {
-			function.button[i].setButton(new JButton("", function.icon[0]));
+			function.button[i].setIcon(function.icon[0]);
 		}
 
 		function.distribuirbutton(function.settings.getTotalMines());
@@ -135,7 +136,7 @@ public class Field extends JFrame implements WindowListener, ActionListener, Mou
 		}
 
 		if (e.getSource().equals(menuCustom)) {
-			function.customButton(null);
+			function.customButton();
 		}
 
 		if (e.getSource().equals(menuSair)) {
@@ -156,7 +157,7 @@ public class Field extends JFrame implements WindowListener, ActionListener, Mou
 								"Fim de Jogo", JOptionPane.PLAIN_MESSAGE);
 					}
 				} else {
-					int numerador = 0;
+					int numerador;
 					numerador = function.localizador(i);
 					function.button[i].setBackground(new Color(238, 238, 238));
 					function.settings.setRemainingFields(function.settings.getRemainingFields() - 1);
@@ -212,7 +213,7 @@ public class Field extends JFrame implements WindowListener, ActionListener, Mou
 						function.setButtonLayout(i, 10, false, true, new Color(99, 184, 255), -1);
 						if (function.button[i].isMined() && function.settings.getRemainingMines() == 0) {
 							function.endGame(100);
-							function.setButtonLayout(i, 9, false, true, new Color(99, 184, 255), 0);
+							function.setButtonLayout(i, 9, false, true, new Color(0, 170, 0), 0);
 						}
 					}
 				} else {
@@ -246,11 +247,7 @@ public class Field extends JFrame implements WindowListener, ActionListener, Mou
 			function.distribuirbutton(function.settings.getTotalMines());
 		}
 		if (e.getKeyCode() == KeyEvent.VK_E) {
-			if (function.settings.isEnabled() == false) {
-				function.settings.setEnabled(true);
-			} else {
-				function.settings.setEnabled(false);
-			}
+			function.settings.setEnabled(!function.settings.isEnabled());
 		}
 	}
 

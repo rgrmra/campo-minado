@@ -7,19 +7,10 @@ public class Area extends JButton {
 	private static final long serialVersionUID = 1L;
 
 	// ATRIBUTOS DO JBUTTON ESPECIAL
-	private JButton button = new JButton();
 	private boolean mined = false;
 	private boolean flagged = false;
 
 	// GETTERS E SETTERS
-	protected JButton getButton() {
-		return button;
-	}
-
-	protected void setButton(JButton button) {
-		this.button = button;
-	}
-
 	protected boolean isMined() {
 		return mined;
 	}
