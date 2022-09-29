@@ -24,7 +24,7 @@ public class Functions extends JFrame {
 	private final Toolkit kit = Toolkit.getDefaultToolkit();
 	public Image img = kit.getImage(classLoader.getResource("com/rgrmra/application/images/icone.png"));
 
-	// CONSTRUTOR E DECLARA«√O DAS VARI¡VEIS
+	// CONSTRUTOR E DECLARA√á√ÉO DAS VARI√ÅVEIS
 	protected Functions() {
 		icon[0] = new ImageIcon(Objects.requireNonNull(classLoader.getResource("com/rgrmra/application/images/space.png")));
 		icon[1] = new ImageIcon(Objects.requireNonNull(classLoader.getResource("com/rgrmra/application/images/num1.png")));
@@ -43,7 +43,7 @@ public class Functions extends JFrame {
 		}
 	}
 
-	// DEFINE O LAYOUT DO BOT√O
+	// DEFINE O LAYOUT DO BOT√ÉO
 	protected void setButtonLayout(int i, int icon, boolean enable, boolean flagged, Color color, int action) {
 		button[i].setIcon(this.icon[icon]);
 		button[i].setEnabled(enable);
@@ -60,9 +60,9 @@ public class Functions extends JFrame {
 		}
 	}
 
-	// DEFINE A POSI«√O DAS MINAS
+	// DEFINE A POSI√á√ÉO DAS MINAS
 	protected void setMined() {
-		// INSTANCIA O OBJETO RANDOM PARA DISTRIBUI«√O DAS MINAS
+		// INSTANCIA O OBJETO RANDOM PARA DISTRIBUI√á√ÉO DAS MINAS
 		Random random = new Random();
 
 		int chosenNumber = random.nextInt(100);
@@ -73,33 +73,33 @@ public class Functions extends JFrame {
 		}
 	}
 
-	// DISTRIBUI OS BOT’ES
+	// DISTRIBUI OS BOT√ïES
 	protected void distribuirbutton(int bombas) {
 		settings.setTotalMines(bombas);
 		settings.setRemainingMines(bombas);
 		settings.setRemainingFields(100 - settings.getTotalMines());
 		settings.setRemainingFlags(settings.getTotalMines());
 
-		// PREPARA OS BOT’ES
+		// PREPARA OS BOT√ïES
 		for (int sequence = 0; sequence < 100; sequence++) {
 			button[sequence].setPreferredSize(new Dimension(30, 30));
 			button[sequence].setMined(false);
 			this.setButtonLayout(sequence, 0, true, false, new Color(102, 102, 102), 0);
 		}
 
-		// DEFINE QUAIS BOT’ES TER√O MINAS
+		// DEFINE QUAIS BOT√ïES TER√ÉO MINAS
 		for (int sequence = 0; sequence < settings.getTotalMines(); sequence++) {
 			this.setMined();
 		}
 	}
 
-	// CUSTOMIZA O N⁄MERO DE BOMBAS
+	// CUSTOMIZA O N√öMERO DE BOMBAS
 	protected void customButton() {
 		try {
 
 			// JANELA PARA OBTER QUANTIDADE DE BOMBAS
 			String valor = JOptionPane.showInputDialog(this,
-					"<html>Com quantas button deseja jogar?<br>Valido de 10 ‡ 99</html>", "Custom",
+					"<html>Com quantas button deseja jogar?<br>Valido de 10 ÔøΩ 99</html>", "Custom",
 					JOptionPane.PLAIN_MESSAGE);
 
 			if (valor != null) {
@@ -126,7 +126,7 @@ public class Functions extends JFrame {
 		}
 	}
 
-	// LOCALIZA TODAS AS MINAS NAS PR”XIMIDADES
+	// LOCALIZA TODAS AS MINAS NAS PR√ìXIMIDADES
 	protected void mostre(int selectedButton) {
 
 		button[selectedButton].setEnabled(false);
@@ -185,7 +185,7 @@ public class Functions extends JFrame {
 		}
 	}
 
-	// ADCIONA OS N⁄MEROS DE MINAS NAS PR”XIMIDADES
+	// ADCIONA OS N√öMEROS DE MINAS NAS PR√ìXIMIDADES
 	protected int localizador(int selectedButton) {
 		int numerador = 0;
 

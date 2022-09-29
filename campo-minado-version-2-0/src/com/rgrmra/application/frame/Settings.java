@@ -2,7 +2,7 @@ package com.rgrmra.application.frame;
 
 public class Settings {
 
-	// ATRIBUTOS DE CONFIGURAÇÕES DA APLICAÇÃO
+	// ATRIBUTOS DE CONFIGURAÃ‡Ã•ES DA APLICAÃ‡ÃƒO
 	private boolean enabled = true;
 	private int totalMines = 15;
 	private int remainingFlags = 15;

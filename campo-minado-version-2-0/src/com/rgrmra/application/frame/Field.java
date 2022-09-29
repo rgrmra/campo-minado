@@ -23,18 +23,18 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
 public class Field extends JFrame implements WindowListener, ActionListener, MouseListener, KeyListener {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2L;
 
 	private final Functions function = new Functions();
 
-	private final JMenuItem menuFacil = new JMenuItem("F·cil");
-	private final JMenuItem menuMedio = new JMenuItem("MÈdio");
-	private final JMenuItem menuDificil = new JMenuItem("DifÌcil");
+	private final JMenuItem menuFacil = new JMenuItem("F√°cil");
+	private final JMenuItem menuMedio = new JMenuItem("M√©dio");
+	private final JMenuItem menuDificil = new JMenuItem("Dif√≠cil");
 	private final JMenuItem menuOneClick = new JMenuItem("OneClick");
 	private final JMenuItem menuCustom = new JMenuItem("Custom");
 	private final JMenuItem menuSair = new JMenuItem("Sair");
 
-	// BOT√O NOVO JOGO
+	// BOT√ÉO NOVO JOGO
 	final JButton newgame = new JButton("Novo Jogo");
 
 	public Field() {
@@ -46,7 +46,7 @@ public class Field extends JFrame implements WindowListener, ActionListener, Mou
 
 		// ATRIBUTOS DO MENU
 		final JMenuBar menu = new JMenuBar();
-		final JMenu menuOption = new JMenu("ConfiguraÁıes");
+		final JMenu menuOption = new JMenu("Configura√ß√µes");
 
 		// PAINEIS
 		final JPanel panel = new JPanel();
@@ -100,15 +100,15 @@ public class Field extends JFrame implements WindowListener, ActionListener, Mou
 		menuCustom.addActionListener(this);
 		menuSair.addActionListener(this);
 
-		// ADICIONA UMA FUN«√O AO BOT√O "NOVO JOGO"
+		// ADICIONA UMA FUN√á√ÉO AO BOT√ÉO "NOVO JOGO"
 		newgame.setFocusable(false);
 		newgame.addActionListener(this);
 		panelSouth.add(newgame);
 
-		// PAINEL PARA APLICA«√O DAS button
+		// PAINEL PARA APLICA√á√ÉO DAS button
 		panel.setLayout(new GridLayout(10, 10, 2, 2));
 
-		// ADICIONA OS BOT’ES (button) AO PAINEL
+		// ADICIONA OS BOT√ïES (button) AO PAINEL
 		for (int i = 0; i < 100; i++) {
 			panel.add(function.button[i]);
 			function.button[i].setFocusable(false);
@@ -117,7 +117,7 @@ public class Field extends JFrame implements WindowListener, ActionListener, Mou
 		}
 	}
 
-	// FUN«’ES (CLIQUES)
+	// FUN√á√ïES (CLIQUES)
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(menuFacil)) {
 			function.distribuirbutton(10);
@@ -153,7 +153,7 @@ public class Field extends JFrame implements WindowListener, ActionListener, Mou
 					function.endGame(i);
 					if (function.settings.isEnabled()) {
 						JOptionPane.showMessageDialog(this,
-								"<html><span style='color: rgb(212,0,0);'>BOMBA</span>!<br>VOC  PERDEU</html>",
+								"<html><span style='color: rgb(212,0,0);'>BOMBA</span>!<br>VOC√ä PERDEU</html>",
 								"Fim de Jogo", JOptionPane.PLAIN_MESSAGE);
 					}
 				} else {
@@ -165,7 +165,7 @@ public class Field extends JFrame implements WindowListener, ActionListener, Mou
 						function.endGame(100);
 						if (function.settings.isEnabled()) {
 							JOptionPane.showMessageDialog(this,
-									"<html><span style='color: rgb(0,170,0);'>PARAB…NS</span>!<br>VOC  VENCEU</html>",
+									"<html><span style='color: rgb(0,170,0);'>PARAB√âNS</span>!<br>VOC√ä VENCEU</html>",
 									"Fim de Jogo", JOptionPane.PLAIN_MESSAGE);
 						}
 					}
@@ -181,7 +181,7 @@ public class Field extends JFrame implements WindowListener, ActionListener, Mou
 		}
 	}
 
-	// FECHA A APLICA«√O
+	// FECHA A APLICA√á√ÉO
 	public void windowClosing(WindowEvent e) {
 		System.exit(0);
 	}
@@ -204,7 +204,7 @@ public class Field extends JFrame implements WindowListener, ActionListener, Mou
 	public void windowOpened(WindowEvent arg0) {
 	}
 
-	// BOT√O DIREITO (BANDEIRINHAS)
+	// BOT√ÉO DIREITO (BANDEIRINHAS)
 	public void mouseClicked(MouseEvent e) {
 		for (int i = 0; i < 100; i++) {
 			if (e.getSource().equals(function.button[i]) && e.getButton() == MouseEvent.BUTTON3) {
@@ -240,8 +240,8 @@ public class Field extends JFrame implements WindowListener, ActionListener, Mou
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_F1) {
 			JOptionPane.showMessageDialog(this,
-					"<html>Desenvolvimento e ElaboraÁ„o de:<br><br>Roger Moura</html>",
-					"Desenvolvedores", JOptionPane.PLAIN_MESSAGE);
+					"<html>Desenvolvimento e Elabora√ß√£oo de:<br><br>Roger Moura</html>",
+					"Desenvolvedor", JOptionPane.PLAIN_MESSAGE);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_R) {
 			function.distribuirbutton(function.settings.getTotalMines());
